@@ -1,0 +1,16 @@
+<ul class="list-unstyled">
+  <% places.each do |place| %>
+    <li>
+      <div>
+        <p><%= place.name %></p>
+      </div>
+      <div>
+        <p><%= place.prefecture %> <%= place.priority %></p>
+      </div>
+      <div>
+        <%= link_to "Delete", place, method: :delete, data: {confirm:"削除してよろしいですか？"}, class: 'btn btn-danger btn-sm' %>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate places %>
+</ul>

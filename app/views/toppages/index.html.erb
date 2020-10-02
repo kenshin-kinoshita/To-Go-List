@@ -1,6 +1,27 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>To Go List で<br>行きたい所をすべて忘れない</h1>
-    <%= link_to '始める', signup_path, class: 'btn btn-lg btn-primary' %>
+<% if logged_in? %>
+    <style>
+      aside {
+      border: 1px solid #000;
+      padding: 1em;
+      text-align: center;
+      background-color: #dedede;
+      }
+    </style>
+
+  <div class="row">
+    <aside class="col-sm-4">
+      <p>サイドバー</p>
+    </aside>
+    <div class="col-sm-8">
+      <%= link_to '+リスト追加', new_place_path %>
+      <%= render 'places/places', places: @places %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>To Go List で<br>行きたい所をすべて忘れない</h1>
+      <%= link_to '始める', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

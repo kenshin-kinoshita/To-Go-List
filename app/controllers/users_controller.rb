@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:show, :edit]
+  # newとかにはいらないのか分からない(lesson15 8.7)
   def show
     @user = User.find(params[:id])
   end
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
+      redirect_to root_path
     else
       flash[:danger] = 'ユーザの登録に失敗しました。'
       render :new
@@ -20,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
